@@ -26,7 +26,7 @@
 
 <?php include("header.php"); ?>
 
-<div class="container">
+<div class="container loginContainer">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4 well">
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">

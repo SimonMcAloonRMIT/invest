@@ -9,6 +9,10 @@
 
 <?php include("header.php"); ?>
 
-<h1 class="animated tada welcomeMsg"> Welcome <?php echo $_SESSION['usr_name']; ?>! </h1>
+<h1 class="welcomeMsg animated fadeInLeft"> Welcome <?php echo $_SESSION['usr_name']; ?>! </h1>
+
+<p class="welcomeSubMsg animated fadeInRight">You have successfully logged in!</p>
+
+<p class="welcomeIcon animated fadeInUp"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></p>
 
 <?php include("footer.php"); ?>

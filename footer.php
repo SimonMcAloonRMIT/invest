@@ -1,7 +1,7 @@
     <footer>
         <div class="container">
             <p>
-                footer goes here!
+                Footer goes here!
             </p>
         </div>
     </div>

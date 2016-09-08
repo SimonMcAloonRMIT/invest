@@ -6,13 +6,30 @@ body {
     margin-right: 5px;
 }
 
+.loginContainer,
+.signupContainer {
+    margin-top: 100px;
+}
+
 .loginButton {
     width: 100%;
 }
 
 .welcomeMsg {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 200px;
+    font-size: 50px;
+}
+
+.welcomeSubMsg {
+    text-align: center;
+    font-size: 30px;
+}
+
+.welcomeIcon {
+    margin-top: 20px;
+    font-size: 80px;
+    text-align: center;
 }
 
 footer {
