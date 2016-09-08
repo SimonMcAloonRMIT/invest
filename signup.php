@@ -12,15 +12,15 @@
 
 	//check if form is submitted
 	if (isset($_POST['signup'])) {
-		$name = mysqli_real_escape_string($con, $_POST['name']);
+		$username = mysqli_real_escape_string($con, $_POST['username']);
 		$email = mysqli_real_escape_string($con, $_POST['email']);
 		$password = mysqli_real_escape_string($con, $_POST['password']);
 		$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 
 		//name can contain only alpha characters and space
-		if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+		if (!preg_match("/^[a-zA-Z ]+$/",$username)) {
 			$error = true;
-			$name_error = "Name must contain only alphabets and space";
+			$username_error = "Username must contain only alphabets and space";
 		}
 		if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
 			$error = true;
@@ -35,10 +35,10 @@
 			$cpassword_error = "Password and Confirm Password doesn't match";
 		}
 		if (!$error) {
-			if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
+			if(mysqli_query($con, "INSERT INTO users(username,email,password) VALUES('" . $username . "', '" . $email . "', '" . md5($password) . "')")) {
 				$successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
 			} else {
-				$errormsg = "Error in registering...Please try again later!";
+				$errormsg = "Error (add more logic here to explain)";
 			}
 		}
 	}
@@ -55,8 +55,8 @@
 
 					<div class="form-group">
 						<label for="name">Username</label>
-						<input type="text" name="name" placeholder="Pick a username" required value="<?php if($error) echo $name; ?>" class="form-control" />
-						<span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
+						<input type="text" name="username" placeholder="Pick a username" required value="<?php if($error) echo $username; ?>" class="form-control" />
+						<span class="text-danger"><?php if (isset($username_error)) echo $username_error; ?></span>
 					</div>
 
 					<div class="form-group">

@@ -16,7 +16,7 @@
 
 		if ($row = mysqli_fetch_array($result)) {
 			$_SESSION['usr_id'] = $row['id'];
-			$_SESSION['usr_name'] = $row['name'];
+			$_SESSION['usr_name'] = $row['username'];
 			header("Location: profile.php");
 		} else {
 			$errormsg = "Incorrect Email or Password!!!";
