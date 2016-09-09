@@ -84,7 +84,7 @@
 
 					<div class="form-group">
 						<label for="name">Username</label>
-						<input type="text" name="username" placeholder="Pick a username" required value="<?php if($error) echo $username; ?>" class="form-control" />
+						<input type="text" name="username" placeholder="Pick a username" required value="<?php if($error) echo $username; ?>" class="form-control" autofocus />
 						<span class="text-danger"><?php if (isset($username_error)) echo $username_error; ?></span>
 					</div>
 

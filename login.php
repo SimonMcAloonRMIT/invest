@@ -36,7 +36,7 @@ if(isset($_POST['login']))
 
 					<div class="form-group">
 						<label for="name">Email</label>
-						<input type="text" name="email" placeholder="Your Email" required class="form-control" />
+						<input type="text" name="email" placeholder="Your Email" required class="form-control" autofocus />
 					</div>
 
 					<div class="form-group">
