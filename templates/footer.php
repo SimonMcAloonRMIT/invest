@@ -1,7 +1,7 @@
     <footer>
         <div class="container">
             <p>
-                Footer goes here!
+                Footer text placeholder
             </p>
         </div>
     </div>

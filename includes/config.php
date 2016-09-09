@@ -1,5 +1,5 @@
 <?php
-class Database
+class DATABASE
 {
     private $host = "mysql3.gear.host";
     private $db_name = "investtest";
@@ -9,7 +9,6 @@ class Database
 
     public function dbConnection()
 	{
-
 	    $this->conn = null;
         try
 		{

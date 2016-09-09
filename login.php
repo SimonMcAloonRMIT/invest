@@ -25,7 +25,7 @@ if(isset($_POST['login']))
 }
 ?>
 
-<?php include("templates/header.php"); ?>
+<?php require_once("templates/header.php"); ?>
 
 <div class="container loginContainer">
 	<div class="row">
@@ -59,4 +59,4 @@ if(isset($_POST['login']))
 	</div>
 </div>
 
-<?php include("templates/footer.php"); ?>
+<?php require_once("templates/footer.php"); ?>

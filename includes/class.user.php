@@ -4,7 +4,6 @@ require_once('config.php');
 
 class USER
 {
-
 	private $conn;
 
 	public function __construct()
@@ -42,7 +41,6 @@ class USER
 			echo $e->getMessage();
 		}
 	}
-
 
 	public function doLogin($uname,$umail,$upass)
 	{
