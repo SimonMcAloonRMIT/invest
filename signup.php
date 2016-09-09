@@ -1,23 +1,22 @@
 <?php
 	session_start();
 
-	if(isset($_SESSION['usr_id'])) {
-		header("Location: index.php");
+	require_once('class.user.php');
+	$user = new USER();
+
+	if($user->is_loggedin()!="")
+	{
+		$user->redirect('profile.php');
 	}
 
-	include_once 'includes/config.php';
-
-	//set validation error flag as false
 	$error = false;
 
-	//check if form is submitted
 	if (isset($_POST['signup'])) {
-		$username = mysqli_real_escape_string($con, $_POST['username']);
-		$email = mysqli_real_escape_string($con, $_POST['email']);
-		$password = mysqli_real_escape_string($con, $_POST['password']);
-		$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+		$username = strip_tags($_POST['username']);
+		$email = strip_tags($_POST['email']);
+		$password = strip_tags($_POST['password']);
+		$cpassword = strip_tags($_POST['cpassword']);
 
-		//name can contain only alpha characters and space
 		if (!preg_match("/^[a-zA-Z ]+$/",$username)) {
 			$error = true;
 			$username_error = "Username must contain only alphabets and space";
@@ -35,10 +34,29 @@
 			$cpassword_error = "Password and Confirm Password doesn't match";
 		}
 		if (!$error) {
-			if(mysqli_query($con, "INSERT INTO users(username,email,password) VALUES('" . $username . "', '" . $email . "', '" . md5($password) . "')")) {
-				$successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
-			} else {
-				$errormsg = "Error (add more logic here to explain)";
+
+			try
+			{
+				$stmt = $user->runQuery("SELECT user_name, user_email FROM users WHERE user_name=:username OR user_email=:email");
+				$stmt->execute(array(':username'=>$username, ':email'=>$email));
+				$row=$stmt->fetch(PDO::FETCH_ASSOC);
+
+				if($row['user_name']==$username) {
+					$errormsg = "Sorry username already taken!";
+				}
+				else if($row['user_email']==$email) {
+					$errormsg = "Sorry email id already taken!";
+				}
+				else
+				{
+					if($user->register($username,$email,$password)){
+						$successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
+					}
+				}
+			}
+			catch(PDOException $e)
+			{
+				echo $e->getMessage();
 			}
 		}
 	}

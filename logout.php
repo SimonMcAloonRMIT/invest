@@ -1,12 +1,15 @@
 <?php
-	session_start();
+	require_once('session.php');
+	require_once('class.user.php');
+	$user_logout = new USER();
 
-	if(isset($_SESSION['usr_id'])) {
-		session_destroy();
-		unset($_SESSION['usr_id']);
-		unset($_SESSION['usr_name']);
-		header("Location: index.php");
-	} else {
-		header("Location: index.php");
+	if($user_logout->is_loggedin()!="")
+	{
+		$user_logout->redirect('profile.php');
+	}
+	if(isset($_GET['logout']) && $_GET['logout']=="true")
+	{
+		$user_logout->doLogout();
+		$user_logout->redirect('index.php');
 	}
 ?>

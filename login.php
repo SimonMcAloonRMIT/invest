@@ -1,27 +1,28 @@
 <?php
-	session_start();
+session_start();
+require_once("class.user.php");
+$login = new USER();
 
-	if(isset($_SESSION['usr_id'])!="") {
-		header("Location: index.php");
+if($login->is_loggedin()!="")
+{
+	$login->redirect('profile.php');
+}
+
+if(isset($_POST['login']))
+{
+	$uname = strip_tags($_POST['email']);
+	$umail = strip_tags($_POST['email']);
+	$upass = strip_tags($_POST['password']);
+
+	if($login->doLogin($uname,$umail,$upass))
+	{
+		$login->redirect('profile.php');
 	}
-
-	include_once 'includes/config.php';
-
-	//check if form is submitted
-	if (isset($_POST['login'])) {
-
-		$email = mysqli_real_escape_string($con, $_POST['email']);
-		$password = mysqli_real_escape_string($con, $_POST['password']);
-		$result = mysqli_query($con, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
-
-		if ($row = mysqli_fetch_array($result)) {
-			$_SESSION['usr_id'] = $row['id'];
-			$_SESSION['usr_name'] = $row['username'];
-			header("Location: profile.php");
-		} else {
-			$errormsg = "Incorrect Email or Password!!!";
-		}
+	else
+	{
+		$errormsg = "Login failed, please try again";
 	}
+}
 ?>
 
 <?php include("header.php"); ?>

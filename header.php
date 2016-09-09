@@ -28,13 +28,15 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar1">
 				<ul class="nav navbar-nav navbar-right">
-					<?php if (isset($_SESSION['usr_id'])) { ?>
-					<li><p class="navbar-text"><i class="fa fa-user headerIcon" aria-hidden="true"></i>Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
-					<li><a href="logout.php"><i class="fa fa-sign-out headerIcon" aria-hidden="true"></i>Log Out</a></li>
-					<?php } else { ?>
+
+				<?php if(isset($_SESSION['user_session'])) { ?>
+					<li><p class="navbar-text"><i class="fa fa-user headerIcon" aria-hidden="true"></i>Signed in as <?php print($userRow['user_name']); ?></p></li>
+					<li><a href="logout.php?logout=true"><i class="fa fa-sign-out headerIcon" aria-hidden="true"></i>Log Out</a></li>
+				<?php } else { ?>
 					<li><a href="login.php">Login</a></li>
 					<li><a href="signup.php">Sign Up</a></li>
-					<?php } ?>
+				<?php } ?>
+
 				</ul>
 			</div>
 		</div>
