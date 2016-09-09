@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("class.user.php");
+require_once("includes/class.user.php");
 $login = new USER();
 
 if($login->is_loggedin()!="")
@@ -25,7 +25,7 @@ if(isset($_POST['login']))
 }
 ?>
 
-<?php include("header.php"); ?>
+<?php include("templates/header.php"); ?>
 
 <div class="container loginContainer">
 	<div class="row">
@@ -59,4 +59,4 @@ if(isset($_POST['login']))
 	</div>
 </div>
 
-<?php include("footer.php"); ?>
+<?php include("templates/footer.php"); ?>

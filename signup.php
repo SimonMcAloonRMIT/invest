@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require_once('class.user.php');
+	require_once('includes/class.user.php');
 	$user = new USER();
 
 	if($user->is_loggedin()!="")
@@ -50,7 +50,18 @@
 				else
 				{
 					if($user->register($username,$email,$password)){
-						$successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
+						//$successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
+
+						if($user->doLogin($username,$email,$password))
+						{
+							$_SESSION['signup'] = 'true';
+							$user->redirect('profile.php');
+						}
+						else
+						{
+							$errormsg = "Login failed, please try again";
+						}
+
 					}
 				}
 			}
@@ -62,7 +73,7 @@
 	}
 ?>
 
-<?php include("header.php"); ?>
+<?php include("templates/header.php"); ?>
 
 <div class="container signupContainer">
 	<div class="row">
@@ -111,4 +122,4 @@
 	</div>
 </div>
 
-<?php include("footer.php"); ?>
+<?php include("templates/footer.php"); ?>

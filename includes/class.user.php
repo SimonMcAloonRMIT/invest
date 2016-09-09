@@ -1,6 +1,6 @@
 <?php
 
-require_once('dbconfig.php');
+require_once('config.php');
 
 class USER
 {
@@ -27,7 +27,7 @@ class USER
 			$new_password = password_hash($upass, PASSWORD_DEFAULT);
 
 			$stmt = $this->conn->prepare("INSERT INTO users(user_name,user_email,user_pass)
-		                                               VALUES(:uname, :umail, :upass)");
+               VALUES(:uname, :umail, :upass)");
 
 			$stmt->bindparam(":uname", $uname);
 			$stmt->bindparam(":umail", $umail);

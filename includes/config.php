@@ -1,9 +1,27 @@
 <?php
-//connect to mysql database
+class Database
+{
+    private $host = "mysql3.gear.host";
+    private $db_name = "investtest";
+    private $username = "investtest";
+    private $password = "Ac1f?~j9d4h1";
+    public $conn;
 
-   define('SERVER', 'mysql3.gear.host');
-   define('USERNAME', 'investtest');
-   define('PASSWORD', 'Ac1f?~j9d4h1');
-   define('DATABASE', 'investtest');
-   $con = mysqli_connect(SERVER,USERNAME,PASSWORD,DATABASE) or die("Error " . mysqli_error($con));
+    public function dbConnection()
+	{
+
+	    $this->conn = null;
+        try
+		{
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+		catch(PDOException $exception)
+		{
+            echo "Connection error: " . $exception->getMessage();
+        }
+
+        return $this->conn;
+    }
+}
 ?>
